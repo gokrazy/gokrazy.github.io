@@ -1,0 +1,50 @@
+---
+layout: default
+title: gokrazy quickstart
+menu: Quickstart
+weight: 1
+---
+
+      <div class="row">
+        <div class="col-lg-12">
+	  <h1>Install Go</h1>
+	  <p>
+	  If you don’t already have Go installed, install it (instructions for Debian and derivatives):
+	  </p>
+	  <pre>sudo apt install golang-go
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH</pre>
+
+          <h1>Install the gokrazy packer</h1>
+	  <pre>go get -u github.com/gokrazy/tools/cmd/gokr-packer</pre>
+
+          <h1>Overwrite an SD card with gokrazy</h1>
+	  <p>
+	  Plug an SD card into your card reader and locate its device node by checking <code>dmesg | tail</code>. In this example, we’ll assume the SD card is accessible as <code>/dev/sdb</code>.
+	  </p>
+	  <p>
+	  To overwrite the entire SD card <code>/dev/sdb</code> with a gokrazy installation running a hello world program, use:
+	  </p>
+	  <pre>sudo setcap CAP_SYS_ADMIN,CAP_DAC_OVERRIDE=ep $(go env GOPATH)/bin/gokr-packer
+gokr-packer -overwrite=/dev/sdb github.com/gokrazy/hello</pre>
+          <p>
+	  The <code>gokr-packer</code> command above will result in log output like this:
+	  </p>
+          <pre>2017/03/01 20:59:55 packer.go:85: installing [github.com/gokrazy/hello]
+2017/03/01 20:59:56 packer.go:131: partitioning /dev/sdb
+2017/03/01 20:59:56 parttable.go:40: device holds 15931539456 bytes
+2017/03/01 20:59:56 packer.go:139: waiting for /dev/sdb1 to appear
+2017/03/01 20:59:59 packer.go:205: mkfs.ext4 /dev/sdb4
+2017/03/01 20:59:59 packer.go:208: http://gokrazy:secretpw@gokrazy/</pre>
+          <p>
+	  After booting from this SD card, your Raspberry Pi 3 will:
+	  <ul>
+	  <li>obtain an IP address for hostname “gokrazy” via DHCP (IPv4) and SLAAC (IPv6)</li>
+	  <li>synchronize the clock using NTP</li>
+	  <li>expose a password-authenticated web interface on private IP addresses<br>
+	  (the default password can be recovered from <code>~/.config/gokrazy/http-password.txt</code>)</li>
+	  <li>supervise all installed programs (only the hello world program in this example)</li>
+	  </ul>
+	  </p>
+	</div>
+      </div>
