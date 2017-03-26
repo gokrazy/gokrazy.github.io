@@ -42,8 +42,17 @@ gokr-packer -overwrite=/dev/sdb github.com/gokrazy/hello</pre>
 2017/03/01 20:59:56 packer.go:131: partitioning /dev/sdb
 2017/03/01 20:59:56 parttable.go:40: device holds 15931539456 bytes
 2017/03/01 20:59:56 packer.go:139: waiting for /dev/sdb1 to appear
-2017/03/01 20:59:59 packer.go:205: mkfs.ext4 /dev/sdb4
-2017/03/01 20:59:59 packer.go:208: http://gokrazy:secretpw@gokrazy/</pre>
+If your applications need to store persistent data, create a file system using e.g.:
+
+	mkfs.ext4 /dev/sdb4
+
+To boot gokrazy, plug the SD card into a Raspberry Pi 3 (no other model supported)
+
+To interact with the device, gokrazy provides a web interface reachable at:
+
+	http://gokrazy:secretpw@gokrazy/
+
+There will be not be any other output (no HDMI, no serial console, etc.)</pre>
           <p>
 	  After booting from this SD card, your Raspberry Pi 3 will:
 	  <ul>
