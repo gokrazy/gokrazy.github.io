@@ -25,7 +25,9 @@ body {
           <ul class="nav nav-pills pull-right">
             {% assign pages = site.pages | sort:"weight" %}
             {% for p in pages %}
-              <li role="presentation" {% if p.url == page.url %}class="active"{% endif %}><a href="{{ p.url }}">{{ p.menu }}</a></li>
+	      {% if p.menu %}
+                <li role="presentation" {% if p.url == page.url %}class="active"{% endif %}><a href="{{ p.url }}">{{ p.menu }}</a></li>
+	      {% endif %}
             {% endfor %}
             <li role="presentation"><a href="https://github.com/gokrazy/gokrazy">Source</a></li>
           </ul>
