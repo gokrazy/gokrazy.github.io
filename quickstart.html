@@ -24,7 +24,8 @@ weight: 1
 	  </p>
 
           <h1>Install the gokrazy packer</h1>
-	  <pre>go get -u github.com/gokrazy/tools/cmd/gokr-packer</pre>
+	  <pre>INSTANCE=gokrazy/hello; mkdir -p ${INSTANCE?} && cd ${INSTANCE?} && echo module ${INSTANCE?} > go.mod
+go get -u github.com/gokrazy/tools/cmd/gokr-packer</pre>
 
           <h1>Overwrite an SD card with gokrazy</h1>
 	  <p>
