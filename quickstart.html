@@ -24,7 +24,7 @@ weight: 1
 	  </p>
 
           <h1>Install the gokrazy packer</h1>
-	  <pre>INSTANCE=gokrazy/hello; mkdir -p ${INSTANCE?} && cd ${INSTANCE?} && echo module ${INSTANCE?} > go.mod
+	  <pre>INSTANCE=gokrazy/hello; mkdir -p ~/${INSTANCE?} && cd ~/${INSTANCE?} && echo module ${INSTANCE?} > go.mod
 go get -u github.com/gokrazy/tools/cmd/gokr-packer</pre>
 
           <h1>Overwrite an SD card with gokrazy</h1>
@@ -34,7 +34,8 @@ go get -u github.com/gokrazy/tools/cmd/gokr-packer</pre>
 	  <p>
 	  To overwrite the entire SD card <code>/dev/sdb</code> with a gokrazy installation running a hello world program, use:
 	  </p>
-	  <pre>gokr-packer -overwrite=/dev/sdb github.com/gokrazy/hello</pre>
+	  <pre>cd ~/gokrazy/hello
+gokr-packer -overwrite=/dev/sdb github.com/gokrazy/hello</pre>
           <p>
 	  The <code>gokr-packer</code> command above will result in log output like this:
 	  </p>
